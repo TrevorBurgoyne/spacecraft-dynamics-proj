@@ -36,7 +36,7 @@ eta = .5*sqrt(trace(Cba) + 1);
 if (~isreal(eta))
     throw(MException("utils:NotReal","Computed eta value is not a real number."))
 elseif (abs(eta) <= tolerance)
-    warning("eta detected as 0, using modified quaternion calculation."))
+    warning("eta detected as 0, using modified quaternion calculation.")
     % When eta is 0, use equation 1.38 from [1]
     % Note that the signs can be switched around as shown in [1].
     % Here we choose the solution where abs(epsilon(1)) > 0
