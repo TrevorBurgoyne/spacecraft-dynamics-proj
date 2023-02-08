@@ -11,6 +11,7 @@ function [yaw, pitch, roll] =  DCM2Euler321(Cba, tolerance)
 % yaw   = yaw angle (psi) in rad. A 1x1 double
 % pitch = pitch angle (theta) in rad. A 1x1 double
 % roll  = roll angle (phi) in rad. A 1x1 double%
+% 
 % Trevor Burgoyne
 % Updated Feb 2023
 %
