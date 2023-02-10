@@ -24,9 +24,7 @@ if nargin < 2
 end
 
 % Ensure proper DCM dimensions
-if size(Cba) ~= [3 3]
-    throw(MException("utils:InvalidDimension","Cba input must be a 3x3 matrix."))
-end
+isValidDCM(Cba);
 
 % Compute eta using equation 1.35 from [1]
 % Note that both positive/negative eta will correspond to the same

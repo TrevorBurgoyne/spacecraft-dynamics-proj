@@ -9,12 +9,11 @@ function [Cba] = Quaternion2DCM(q_ba)
 % OUTPUT PARAMETERS:
 % Cba = 3x3 DCM calculated from q
 %
-% Ryan Caverly
-% Updated January 2019
+% Ryan Caverly, Trevor Burgoyne
+% Updated Feburary 2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Extract column matrix and scalar part of quaternion
-epsilon_ba = [q_ba(1);q_ba(2);q_ba(3)];
-eta_ba = q_ba(4);
+[epsilon_ba, eta_ba] = DecomposeQuaternion(q_ba);
 
 Cba = (2*eta_ba^2-1)*eye(3) + 2*epsilon_ba*epsilon_ba' - 2*eta_ba*crossm(epsilon_ba);
