@@ -12,8 +12,11 @@ Cba = [...
      .2974  -.2026   .9330;
 ];
 
-%% Verify part (b)
+%% Verify 2(b)
 q_ba = DCM2Quaternion(Cba)
 
-%% Verify part (d)
+%% Verify 2(d)
 [yaw, pitch, roll] = DCM2Euler321(Cba)
+
+%% Verify 3(d)
+SmatrixQuaternion(q_ba)*GammaQuaternion(q_ba) % should be eye(3)
