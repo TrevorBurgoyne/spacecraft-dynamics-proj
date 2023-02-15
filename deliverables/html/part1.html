@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>part1</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-02-08"><meta name="DC.source" content="part1.m"><style type="text/css">
+      --><title>part1</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-02-14"><meta name="DC.source" content="part1.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Part 1 Code Deliverables</a></li><li><a href="#2">Verify part (b)</a></li><li><a href="#3">Verify part (d)</a></li></ul></div><h2 id="1">Part 1 Code Deliverables</h2><p>Trevor Burgoyne, 17 Feb 2023, AEM 4305 Spacecraft Attitude Dynamics and Control</p><pre class="codeinput"><span class="comment">% Add path to util functions so that we can use them</span>
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Part 1 Code Deliverables</a></li><li><a href="#2">Verify 2(b)</a></li><li><a href="#3">Verify 2(d)</a></li><li><a href="#4">Verify 3(d)</a></li></ul></div><h2 id="1">Part 1 Code Deliverables</h2><p>Trevor Burgoyne, 17 Feb 2023, AEM 4305 Spacecraft Attitude Dynamics and Control</p><pre class="codeinput"><span class="comment">% Add path to util functions so that we can use them</span>
 addpath  <span class="string">'..\utils\'</span>;
 
 <span class="comment">% Define Cba as given in instructions</span>
@@ -76,7 +76,7 @@ Cba = [<span class="keyword">...</span>
     -.3201   .8995   .2974;
      .2974  -.2026   .9330;
 ];
-</pre><h2 id="2">Verify part (b)</h2><pre class="codeinput">q_ba = DCM2Quaternion(Cba)
+</pre><h2 id="2">Verify 2(b)</h2><pre class="codeinput">q_ba = DCM2Quaternion(Cba)
 </pre><pre class="codeoutput">
 q_ba =
 
@@ -85,7 +85,7 @@ q_ba =
     0.1830
     0.9659
 
-</pre><h2 id="3">Verify part (d)</h2><pre class="codeinput">[yaw, pitch, roll] = DCM2Euler321(Cba)
+</pre><h2 id="3">Verify 2(d)</h2><pre class="codeinput">[yaw, pitch, roll] = DCM2Euler321(Cba)
 </pre><pre class="codeoutput">
 yaw =
 
@@ -101,7 +101,15 @@ roll =
 
     0.3086
 
-</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021b</a><br></p></div><!--
+</pre><h2 id="4">Verify 3(d)</h2><pre class="codeinput">SmatrixQuaternion(q_ba)*GammaQuaternion(q_ba) <span class="comment">% should be eye(3)</span>
+</pre><pre class="codeoutput">
+ans =
+
+    1.0000         0    0.0000
+         0    1.0000    0.0000
+    0.0000    0.0000    1.0000
+
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Part 1 Code Deliverables
 % Trevor Burgoyne, 17 Feb 2023,
@@ -117,10 +125,13 @@ Cba = [...
      .2974  -.2026   .9330;
 ];
 
-%% Verify part (b)
+%% Verify 2(b)
 q_ba = DCM2Quaternion(Cba)
 
-%% Verify part (d)
+%% Verify 2(d)
 [yaw, pitch, roll] = DCM2Euler321(Cba)
+
+%% Verify 3(d)
+SmatrixQuaternion(q_ba)*GammaQuaternion(q_ba) % should be eye(3)
 ##### SOURCE END #####
 --></body></html>
