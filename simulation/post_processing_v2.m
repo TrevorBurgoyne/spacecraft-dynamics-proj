@@ -13,9 +13,15 @@ x_dot = x_out(:,4:6);
 
 % Here is where you do post processing. 
 % For instance, when all forces are conservative, energy should be 
-% conserved. So, let's compute the energy, E = T + V.
+% conserved. So, let's compute the energy, E = T + V + J2.
 
-T = .5*C.ms*(vecnorm(x_dot,2,2).^2); % KE at each time tick
-V = -(C.mu*C.ms)./vecnorm(x,2,2);    % PE at each time tick
+v = vecnorm(x_dot,2,2); % Magnitude of xdot at each time tick
+r = vecnorm(x,2,2);     % Magnitude of x at each time tick
 
-E = T + V;
+T  = .5*C.ms*(v.^2);     % KE at each time tick
+V  = -(C.mu*C.ms)./r;    % PE at each time tick
+
+% J2 PE Correction
+J2 = ((C.mu*C.ms*C.J2*C.Re^2)./(r.^3)).*( (3./(2*r.^2)).*(x(:,3).^2) -.5 );
+
+E = T + V + J2;
