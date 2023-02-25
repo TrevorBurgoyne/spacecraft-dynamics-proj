@@ -1,6 +1,6 @@
-function  [dot_x] = TranslationalODEs(x,t)
+function  [dot_x] = TranslationalODEs(t,x)
 %ODES  
-% [dot_x] = TranslationalODEs(x,t) returns x_dot = f(x,t) by
+% [dot_x] = TranslationalODEs(t,x) returns x_dot = f(x,t) by
 % specifying the differential equations of the system in first-order form.
 %
 % INPUT PARAMETERS:
@@ -25,9 +25,14 @@ const_struct   % Extract C (constants) struct from utils\const_struct.m
 r     = x(1:3); % [x, y, z]'
 r_dot = x(4:6); % [x_dot, y_dot, z_dot]'
 
+% J2 perturbation correction factor
+r_mag = norm(r);
+r3 = [0;0;r(3)]; % Column vector with only r(3)
+J2 = ((3*C.mu*C.J2*C.Re^2)/(2*r_mag^5))*( ((5/r_mag^2)*(r(3)^2 -1))*r - 2*r3);
+
 % Form dot_x = f(x,u) system.
 dot_x      = zeros(6,1);
 dot_x(1:3) = r_dot; 
-dot_x(4:6) = (-C.mu / (norm(r)^3))*r;
+dot_x(4:6) = (-C.mu / (r_mag^3))*r + J2;
 
 
