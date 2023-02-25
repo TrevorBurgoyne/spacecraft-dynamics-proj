@@ -15,7 +15,7 @@ function  [dot_x] = TranslationalODEs(t,x)
 % Updated 3 Mar 2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-addpath utils\ % Add util functions to path
+addpath ..\simulation\utils\ % Add util functions to path
 const_struct   % Extract C (constants) struct from utils\const_struct.m 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

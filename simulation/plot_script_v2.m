@@ -14,7 +14,7 @@ line_width = 2;
 % Notice how the axes for each plot are labeled with the appropriate units
 
 % System response
-figure
+figure('Position',[100 100 1200 800])
 % x vs time
 subplot(2,3,1) 
 plot(t,x_out(:,1),'Linewidth',line_width);
@@ -23,6 +23,7 @@ xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('x (m)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
+axis square
 
 % y vs time
 subplot(2,3,2) 
@@ -32,6 +33,7 @@ xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('y (m)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
+axis square
 
 % z vs time
 subplot(2,3,3) 
@@ -41,6 +43,7 @@ xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('z (m)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
+axis square
 
 % xdot vs time
 subplot(2,3,4)
@@ -50,6 +53,7 @@ xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('xdot (m/s)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
+axis square
 
 % ydot vs time
 subplot(2,3,5)
@@ -59,6 +63,7 @@ xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('ydot (m/s)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
+axis square
 
 % xzdot vs time
 subplot(2,3,6)
@@ -68,6 +73,7 @@ xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('zdot (m/s)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
+axis square
 
 % Energy, which should be constant when damping is zero.
 figure
@@ -79,10 +85,24 @@ ylabel('$E$ (J)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 
-subplot(2,1,2) % Plot of normalized change in energy vs time (should be zero)
+% Plot of normalized change in energy vs time (should be zero)
+subplot(2,1,2)
 plot(t,(E-E(1))./E(1),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('$(E - E(0))/E(0)$ (J)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
+
+% Plot of spacecraft trajectory around Earth
+figure
+plot3(x_out(:,1),x_out(:,2),x_out(:,3))
+xlabel('x (m)','fontsize',font_size,'Interpreter','latex');
+ylabel('y (m)','fontsize',font_size,'Interpreter','latex');
+zlabel('z (m)','fontsize',font_size,'Interpreter','latex');
+grid on
+axis equal
+hold on
+[X,Y,Z] = sphere; % Sphere
+surf(X*C.Re, Y*C.Re, Z*C.Re); % Earth
+
