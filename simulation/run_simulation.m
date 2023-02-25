@@ -26,7 +26,7 @@ t_span = linspace(t_0,t_max,t_div); % Total simulation time.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation options.
- options = odeset('AbsTol',1e-9,'RelTol',1e-9); % This changes the integration tolerence.
+options = odeset('AbsTol',1e-9,'RelTol',1e-9); % This changes the integration tolerence.
 
 tic
 [t,x_out] = ode45(@TranslationalODEs,t_span,x,options);
