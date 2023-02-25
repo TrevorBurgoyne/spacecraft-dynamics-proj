@@ -10,7 +10,7 @@
 % Spacecraft Properties
 C.m  = 2860;          % kg, spacecraft mass
 
-C.me = 5.97219*e24;   % kg, mass of Earth
+C.me = 5.97219e24;   % kg, mass of Earth
 C.Re = 6.3712e6;      % m, Radius of Earth
 C.J2 = 1.08262645e-3; % Perturbation coefficient for Earth
 C.G  = 6.6743e-11;    % m^3*kg^-1*s^-2, Universal Gravitational Constant

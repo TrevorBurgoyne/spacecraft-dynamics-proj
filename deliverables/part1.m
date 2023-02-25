@@ -3,7 +3,7 @@
 % AEM 4305 Spacecraft Attitude Dynamics and Control
 
 % Add path to util functions so that we can use them
-addpath  '..\utils\';
+addpath  '..\simulation\utils\';
 
 % Define Cba as given in instructions
 Cba = [...
