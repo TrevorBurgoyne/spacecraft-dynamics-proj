@@ -27,7 +27,7 @@ x         = [epsilon_0', eta_0, omega_0']'; % Initial Conditions
 % Simulation time.
 t_0 = 0; % s
 % t_max = .75*C.day; % s
-t_max = 60; % s
+t_max = 2*C.min; % s
 t_div = 10001; % number of steps to divide the time series into.
 t_span = linspace(t_0,t_max,t_div); % Total simulation time.
 
@@ -46,7 +46,7 @@ post_processing_v2
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot data
-% plot_script_v2
+plot_script_v2
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

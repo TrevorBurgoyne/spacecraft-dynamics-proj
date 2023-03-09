@@ -77,6 +77,7 @@ line_width = 2;
 
 % Rotational stuffs
 % epsilon1
+figure('Position',[100 100 1200 600])
 subplot(2,4,1)
 plot(t,x_out(:,1),'Linewidth',line_width);
 hold on
@@ -155,6 +156,40 @@ ylabel('Roll ($\theta$)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 axis square
+
+% Omega stuffs
+figure('Position',[100 100 1200 600])
+
+% omega1
+subplot(1,3,1)
+plot(t,x_out(:,5),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\omega_{1}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% omega2
+subplot(1,3,2)
+plot(t,x_out(:,6),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\omega_{2}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% omega1
+subplot(1,3,3)
+plot(t,x_out(:,7),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\omega_{3}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
 
 % Energy, which should be constant when damping is zero.
 figure
