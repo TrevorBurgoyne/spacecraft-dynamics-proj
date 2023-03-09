@@ -33,6 +33,6 @@ moments = zeros(3,1);
 dot_x      = zeros(7,1);
 dot_x(1:3) = .5*(eta*eye(3) + crossm(epsilon)) * omega; 
 dot_x(4)   = -.5 * epsilon' * omega;
-dot_x(5:7) = inv(C.I) * (-omega*C.I*omega + moments);
+dot_x(5:7) = inv(C.I) * (-crossm(omega)*C.I*omega + moments);
 
 
