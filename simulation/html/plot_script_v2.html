@@ -1,0 +1,520 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Plotting script.</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-03-09"><meta name="DC.source" content="plot_script_v2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Plotting script.</h1><p>Created by James Richard Forbes Edited by Ryan James Caverly, Trevor Burgoyne Updated 17 Mar 2023</p><pre class="codeinput"><span class="comment">% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% Font size, line size, and line width.</span>
+font_size = 15;
+line_size = 15;
+line_width = 2;
+
+<span class="comment">% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% Plots.</span>
+<span class="comment">% Notice how the axes for each plot are labeled with the appropriate units</span>
+
+<span class="comment">% System response</span>
+<span class="comment">% figure('Position',[100 100 1200 800])</span>
+<span class="comment">% % x vs time</span>
+<span class="comment">% subplot(2,3,1)</span>
+<span class="comment">% plot(t,x_out(:,1),'Linewidth',line_width);</span>
+<span class="comment">% hold on</span>
+<span class="comment">% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% ylabel('x (m)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)</span>
+<span class="comment">% grid on</span>
+<span class="comment">% axis square</span>
+<span class="comment">%</span>
+<span class="comment">% % y vs time</span>
+<span class="comment">% subplot(2,3,2)</span>
+<span class="comment">% plot(t,x_out(:,2),'Linewidth',line_width);</span>
+<span class="comment">% hold on</span>
+<span class="comment">% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% ylabel('y (m)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)</span>
+<span class="comment">% grid on</span>
+<span class="comment">% axis square</span>
+<span class="comment">%</span>
+<span class="comment">% % z vs time</span>
+<span class="comment">% subplot(2,3,3)</span>
+<span class="comment">% plot(t,x_out(:,3),'Linewidth',line_width);</span>
+<span class="comment">% hold on</span>
+<span class="comment">% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% ylabel('z (m)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)</span>
+<span class="comment">% grid on</span>
+<span class="comment">% axis square</span>
+<span class="comment">%</span>
+<span class="comment">% % xdot vs time</span>
+<span class="comment">% subplot(2,3,4)</span>
+<span class="comment">% plot(t,x_out(:,4),'Linewidth',line_width);</span>
+<span class="comment">% hold on</span>
+<span class="comment">% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% ylabel('xdot (m/s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)</span>
+<span class="comment">% grid on</span>
+<span class="comment">% axis square</span>
+<span class="comment">%</span>
+<span class="comment">% % ydot vs time</span>
+<span class="comment">% subplot(2,3,5)</span>
+<span class="comment">% plot(t,x_out(:,5),'Linewidth',line_width);</span>
+<span class="comment">% hold on</span>
+<span class="comment">% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% ylabel('ydot (m/s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)</span>
+<span class="comment">% grid on</span>
+<span class="comment">% axis square</span>
+<span class="comment">%</span>
+<span class="comment">% % xzdot vs time</span>
+<span class="comment">% subplot(2,3,6)</span>
+<span class="comment">% plot(t,x_out(:,6),'Linewidth',line_width);</span>
+<span class="comment">% hold on</span>
+<span class="comment">% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% ylabel('zdot (m/s)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)</span>
+<span class="comment">% grid on</span>
+<span class="comment">% axis square</span>
+
+<span class="comment">% Rotational stuffs</span>
+<span class="comment">% epsilon1</span>
+figure(<span class="string">'Position'</span>,[100 100 1200 600])
+subplot(2,4,1)
+plot(t,x_out(:,1),<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$\varepsilon_{1}$'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% epsilon2</span>
+subplot(2,4,2)
+plot(t,x_out(:,2),<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$\varepsilon_{2}$'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% epsilon3</span>
+subplot(2,4,3)
+plot(t,x_out(:,3),<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$\varepsilon_{3}$'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% eta</span>
+subplot(2,4,4)
+plot(t,x_out(:,4),<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$\eta$'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% q_norm</span>
+subplot(2,4,5)
+plot(t,q_norm,<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$\varepsilon^{T}\varepsilon+\eta^{2}-1$'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% yaw</span>
+subplot(2,4,6)
+plot(t,yaw,<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'Yaw ($\psi, rad$)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% pitch</span>
+subplot(2,4,7)
+plot(t,pitch,<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'Pitch ($\theta, rad$)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% roll</span>
+subplot(2,4,8)
+plot(t,yaw,<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'Roll ($\phi, rad$)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% Omega stuffs</span>
+figure(<span class="string">'Position'</span>,[100 100 1200 600])
+
+<span class="comment">% omega1</span>
+subplot(1,3,1)
+plot(t,x_out(:,5),<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$\omega_{1}$'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% omega2</span>
+subplot(1,3,2)
+plot(t,x_out(:,6),<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$\omega_{2}$'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+<span class="comment">% omega1</span>
+subplot(1,3,3)
+plot(t,x_out(:,7),<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$\omega_{3}$'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+axis <span class="string">square</span>
+
+
+<span class="comment">% Energy, which should be constant when damping is zero.</span>
+figure
+subplot(2,1,1) <span class="comment">% Plot of total energy vs time (should be constant)</span>
+plot(t,E,<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$E$ (J)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+
+<span class="comment">% Plot of normalized change in energy vs time (should be zero)</span>
+subplot(2,1,2)
+plot(t,(E-E(1))./E(1),<span class="string">'Linewidth'</span>,line_width);
+hold <span class="string">on</span>
+xlabel(<span class="string">'Time (s)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+ylabel(<span class="string">'$(E - E(0))/E(0)$ (J)'</span>,<span class="string">'fontsize'</span>,font_size,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);
+set(gca,<span class="string">'XMinorGrid'</span>,<span class="string">'off'</span>,<span class="string">'GridLineStyle'</span>,<span class="string">'-'</span>,<span class="string">'FontSize'</span>,line_size)
+grid <span class="string">on</span>
+
+<span class="comment">% % Plot of spacecraft trajectory around Earth</span>
+<span class="comment">% figure</span>
+<span class="comment">% plot3(x_out(:,1),x_out(:,2),x_out(:,3))</span>
+<span class="comment">% xlabel('x (m)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% ylabel('y (m)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% zlabel('z (m)','fontsize',font_size,'Interpreter','latex');</span>
+<span class="comment">% grid on</span>
+<span class="comment">% axis equal</span>
+<span class="comment">% hold on</span>
+<span class="comment">% [X,Y,Z] = sphere; % Sphere</span>
+<span class="comment">% surf(X*C.Re, Y*C.Re, Z*C.Re); % Earth</span>
+</pre><pre class="codeoutput error">Unrecognized function or variable 't'.
+
+Error in plot_script_v2 (line 82)
+plot(t,x_out(:,1),'Linewidth',line_width);
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Plotting script.
+% Created by James Richard Forbes
+% Edited by Ryan James Caverly, Trevor Burgoyne
+% Updated 17 Mar 2023
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font size, line size, and line width. 
+font_size = 15;
+line_size = 15;
+line_width = 2;
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plots.
+% Notice how the axes for each plot are labeled with the appropriate units
+
+% System response
+% figure('Position',[100 100 1200 800])
+% % x vs time
+% subplot(2,3,1) 
+% plot(t,x_out(:,1),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('x (m)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % y vs time
+% subplot(2,3,2) 
+% plot(t,x_out(:,2),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('y (m)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % z vs time
+% subplot(2,3,3) 
+% plot(t,x_out(:,3),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('z (m)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % xdot vs time
+% subplot(2,3,4)
+% plot(t,x_out(:,4),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('xdot (m/s)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % ydot vs time
+% subplot(2,3,5)
+% plot(t,x_out(:,5),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('ydot (m/s)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % xzdot vs time
+% subplot(2,3,6)
+% plot(t,x_out(:,6),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('zdot (m/s)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+
+% Rotational stuffs
+% epsilon1
+figure('Position',[100 100 1200 600])
+subplot(2,4,1)
+plot(t,x_out(:,1),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\varepsilon_{1}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% epsilon2
+subplot(2,4,2)
+plot(t,x_out(:,2),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\varepsilon_{2}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% epsilon3
+subplot(2,4,3)
+plot(t,x_out(:,3),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\varepsilon_{3}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% eta
+subplot(2,4,4)
+plot(t,x_out(:,4),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\eta$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% q_norm
+subplot(2,4,5)
+plot(t,q_norm,'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\varepsilon^{T}\varepsilon+\eta^{2}-1$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% yaw
+subplot(2,4,6)
+plot(t,yaw,'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('Yaw ($\psi, rad$)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% pitch
+subplot(2,4,7)
+plot(t,pitch,'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('Pitch ($\theta, rad$)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% roll
+subplot(2,4,8)
+plot(t,yaw,'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('Roll ($\phi, rad$)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% Omega stuffs
+figure('Position',[100 100 1200 600])
+
+% omega1
+subplot(1,3,1)
+plot(t,x_out(:,5),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\omega_{1}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% omega2
+subplot(1,3,2)
+plot(t,x_out(:,6),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\omega_{2}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% omega1
+subplot(1,3,3)
+plot(t,x_out(:,7),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\omega_{3}$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+
+% Energy, which should be constant when damping is zero.
+figure
+subplot(2,1,1) % Plot of total energy vs time (should be constant)
+plot(t,E,'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$E$ (J)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+
+% Plot of normalized change in energy vs time (should be zero)
+subplot(2,1,2)
+plot(t,(E-E(1))./E(1),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$(E - E(0))/E(0)$ (J)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+
+% % Plot of spacecraft trajectory around Earth
+% figure
+% plot3(x_out(:,1),x_out(:,2),x_out(:,3))
+% xlabel('x (m)','fontsize',font_size,'Interpreter','latex');
+% ylabel('y (m)','fontsize',font_size,'Interpreter','latex');
+% zlabel('z (m)','fontsize',font_size,'Interpreter','latex');
+% grid on
+% axis equal
+% hold on
+% [X,Y,Z] = sphere; % Sphere
+% surf(X*C.Re, Y*C.Re, Z*C.Re); % Earth
+
+
+##### SOURCE END #####
+--></body></html>

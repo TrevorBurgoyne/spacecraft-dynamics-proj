@@ -1,7 +1,7 @@
 %% Spacecraft Simulation
 % Created by James Richard Forbes
 % Edited by Ryan James Caverly, Trevor Burgoyne
-% Updated 3 Mar 2023
+% Updated 17 Mar 2023
 
 clear all
 format long

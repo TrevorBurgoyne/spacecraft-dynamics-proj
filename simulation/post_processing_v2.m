@@ -1,7 +1,7 @@
 %% Post processing script.
 % Created by James Richard Forbes
 % Edited by Ryan James Caverly, Trevor Burgoye
-% Updated 3 Mar 2023
+% Updated 17 Mar 2023
 
 addpath ..\simulation\utils\ % Add util functions to path
 const_struct   % Extract C (constants) struct from utils\const_struct.m 

@@ -1,7 +1,7 @@
 %% Plotting script.
 % Created by James Richard Forbes
 % Edited by Ryan James Caverly, Trevor Burgoyne
-% Updated 3 Mar 2023
+% Updated 17 Mar 2023
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Font size, line size, and line width. 
@@ -132,7 +132,7 @@ subplot(2,4,6)
 plot(t,yaw,'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('Yaw ($\psi$)','fontsize',font_size,'Interpreter','latex');
+ylabel('Yaw ($\psi, rad$)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 axis square
@@ -142,7 +142,7 @@ subplot(2,4,7)
 plot(t,pitch,'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('Pitch ($\phi$)','fontsize',font_size,'Interpreter','latex');
+ylabel('Pitch ($\theta, rad$)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 axis square
@@ -152,7 +152,7 @@ subplot(2,4,8)
 plot(t,yaw,'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('Roll ($\theta$)','fontsize',font_size,'Interpreter','latex');
+ylabel('Roll ($\phi, rad$)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 axis square
