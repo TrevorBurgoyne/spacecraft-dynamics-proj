@@ -25,3 +25,13 @@ C.ms  = 2860;            % kg, spacecraft mass
 C.h   = 3.5786e7;        % m, spacecraft altitude (measured from surface)
 C.Rs  = C.Re + C.h;      % m, spacecraft radius (measured from center of earth)
 C.v   = sqrt(C.mu/C.Rs); % m/s, spacecraft orbital velocity
+C.s   = 7.1;             % m, size of spacecraft sides (the central cube)
+C.l   = 9.45;            % m, length of spacecraft rectangular panels
+C.w   = C.s;             % m, width of spacecraft rectangular panels (same as cude size)
+
+% Inertia about Spacecraft COM in Body Frame
+C.I = (C.ms / 6)*diag([
+  .9*C.s^2 + .05*C.w^2           % I1
+  .9*C.s^2 + .05*C.l^2           % I2
+  .9*C.s^2 + .05*(C.w^2 + C.l^2) % I3
+]); % kg*m^2
