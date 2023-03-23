@@ -79,7 +79,7 @@ axis square
 % epsilon1
 figure('Position',[100 100 1200 600])
 subplot(2,4,1)
-plot(t,x_out(:,1),'Linewidth',line_width);
+plot(t,x_out(:,7),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('$\varepsilon_{1}$','fontsize',font_size,'Interpreter','latex');
@@ -89,7 +89,7 @@ axis square
 
 % epsilon2
 subplot(2,4,2)
-plot(t,x_out(:,2),'Linewidth',line_width);
+plot(t,x_out(:,8),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('$\varepsilon_{2}$','fontsize',font_size,'Interpreter','latex');
@@ -99,7 +99,7 @@ axis square
 
 % epsilon3
 subplot(2,4,3)
-plot(t,x_out(:,3),'Linewidth',line_width);
+plot(t,x_out(:,9),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('$\varepsilon_{3}$','fontsize',font_size,'Interpreter','latex');
@@ -109,7 +109,7 @@ axis square
 
 % eta
 subplot(2,4,4)
-plot(t,x_out(:,4),'Linewidth',line_width);
+plot(t,x_out(:,10),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('$\eta$','fontsize',font_size,'Interpreter','latex');
@@ -149,7 +149,7 @@ axis square
 
 % roll
 subplot(2,4,8)
-plot(t,yaw,'Linewidth',line_width);
+plot(t,roll,'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('Roll ($\phi, rad$)','fontsize',font_size,'Interpreter','latex');
@@ -162,7 +162,7 @@ figure('Position',[100 100 1200 600])
 
 % omega1
 subplot(1,3,1)
-plot(t,x_out(:,5),'Linewidth',line_width);
+plot(t,x_out(:,11),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('$\omega_{1}$','fontsize',font_size,'Interpreter','latex');
@@ -172,7 +172,7 @@ axis square
 
 % omega2
 subplot(1,3,2)
-plot(t,x_out(:,6),'Linewidth',line_width);
+plot(t,x_out(:,12),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('$\omega_{2}$','fontsize',font_size,'Interpreter','latex');
@@ -180,9 +180,9 @@ set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 axis square
 
-% omega1
+% omega3
 subplot(1,3,3)
-plot(t,x_out(:,7),'Linewidth',line_width);
+plot(t,x_out(:,13),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('$\omega_{3}$','fontsize',font_size,'Interpreter','latex');
