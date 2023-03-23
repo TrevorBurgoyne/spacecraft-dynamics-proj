@@ -1,7 +1,7 @@
 %% Plotting script.
 % Created by James Richard Forbes
 % Edited by Ryan James Caverly, Trevor Burgoyne
-% Updated 17 Mar 2023
+% Updated 24 Mar 2023
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Font size, line size, and line width. 
@@ -14,66 +14,66 @@ line_width = 2;
 % Notice how the axes for each plot are labeled with the appropriate units
 
 % System response
-% figure('Position',[100 100 1200 800])
-% % x vs time
-% subplot(2,3,1) 
-% plot(t,x_out(:,1),'Linewidth',line_width);
-% hold on
-% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-% ylabel('x (m)','fontsize',font_size,'Interpreter','latex');
-% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-% grid on
-% axis square
-% 
-% % y vs time
-% subplot(2,3,2) 
-% plot(t,x_out(:,2),'Linewidth',line_width);
-% hold on
-% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-% ylabel('y (m)','fontsize',font_size,'Interpreter','latex');
-% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-% grid on
-% axis square
-% 
-% % z vs time
-% subplot(2,3,3) 
-% plot(t,x_out(:,3),'Linewidth',line_width);
-% hold on
-% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-% ylabel('z (m)','fontsize',font_size,'Interpreter','latex');
-% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-% grid on
-% axis square
-% 
-% % xdot vs time
-% subplot(2,3,4)
-% plot(t,x_out(:,4),'Linewidth',line_width);
-% hold on
-% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-% ylabel('xdot (m/s)','fontsize',font_size,'Interpreter','latex');
-% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-% grid on
-% axis square
-% 
-% % ydot vs time
-% subplot(2,3,5)
-% plot(t,x_out(:,5),'Linewidth',line_width);
-% hold on
-% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-% ylabel('ydot (m/s)','fontsize',font_size,'Interpreter','latex');
-% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-% grid on
-% axis square
-% 
-% % xzdot vs time
-% subplot(2,3,6)
-% plot(t,x_out(:,6),'Linewidth',line_width);
-% hold on
-% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-% ylabel('zdot (m/s)','fontsize',font_size,'Interpreter','latex');
-% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-% grid on
-% axis square
+figure('Position',[100 100 1200 800])
+% x vs time
+subplot(2,3,1) 
+plot(t,x_out(:,1),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('x (m)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% y vs time
+subplot(2,3,2) 
+plot(t,x_out(:,2),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('y (m)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% z vs time
+subplot(2,3,3) 
+plot(t,x_out(:,3),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('z (m)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% xdot vs time
+subplot(2,3,4)
+plot(t,x_out(:,4),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('xdot (m/s)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% ydot vs time
+subplot(2,3,5)
+plot(t,x_out(:,5),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('ydot (m/s)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
+
+% zdot vs time
+subplot(2,3,6)
+plot(t,x_out(:,6),'Linewidth',line_width);
+hold on
+xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('zdot (m/s)','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+axis square
 
 % Rotational stuffs
 % epsilon1
@@ -210,15 +210,15 @@ ylabel('$(E - E(0))/E(0)$ (J)','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 
-% % Plot of spacecraft trajectory around Earth
-% figure
-% plot3(x_out(:,1),x_out(:,2),x_out(:,3))
-% xlabel('x (m)','fontsize',font_size,'Interpreter','latex');
-% ylabel('y (m)','fontsize',font_size,'Interpreter','latex');
-% zlabel('z (m)','fontsize',font_size,'Interpreter','latex');
-% grid on
-% axis equal
-% hold on
-% [X,Y,Z] = sphere; % Sphere
-% surf(X*C.Re, Y*C.Re, Z*C.Re); % Earth
+% Plot of spacecraft trajectory around Earth
+figure
+plot3(x_out(:,1),x_out(:,2),x_out(:,3))
+xlabel('x (m)','fontsize',font_size,'Interpreter','latex');
+ylabel('y (m)','fontsize',font_size,'Interpreter','latex');
+zlabel('z (m)','fontsize',font_size,'Interpreter','latex');
+grid on
+axis equal
+hold on
+[X,Y,Z] = sphere; % Sphere
+surf(X*C.Re, Y*C.Re, Z*C.Re); % Earth
 
