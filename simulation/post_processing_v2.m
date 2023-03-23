@@ -42,7 +42,7 @@ for i=1:n_entries
     % Euler Angles
     q = [epsilon(:,i); eta(i)];
     C_ba = Quaternion2DCM(q);
-    [y,p,r] = DCM2Euler321(C_ba);
+     [y,p,r] = DCM2Euler321(C_ba);
     yaw(i)   = y;
     pitch(i) = p;
     roll(i)  = r;
