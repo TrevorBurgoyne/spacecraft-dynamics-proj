@@ -51,11 +51,11 @@ for i=1:n_entries
     q_norm(i) = epsilon(:,i)'*epsilon(:,i) + eta(i)^2 - 1;
     
     % r_b
-    r_b = C_ba*x(i);
+    r_b = C_ba*x(i,:)';
     r = norm(r_b);
     
     % Gravity Gradient Torque
-    V_gg(i) = (.5*C.mu*r^-3)*((3*r^-2)*crossm(r_b)'*C.I*r_b  - trace(C.I));
+    V_gg(i) = (.5*C.mu*r^-3)*((3*r^-2)*r_b'*C.I*r_b  - trace(C.I));
 end
 
 % Translational
