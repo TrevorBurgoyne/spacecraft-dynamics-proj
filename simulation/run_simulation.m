@@ -20,8 +20,8 @@ v_0    = [0, C.v, 0]';     % Initial velocity [xdot,ydot,zdot]'
 % Rotational
 epsilon_0 = zeros(3,1);        % Initial epsilon
 eta_0     = 1;                 % Initial eta
-omega_0   = [0.08; -0.1; 0.3]; % Initial omega (rad/s)
-% omega_0   = [0; 0; 0]; % Initial omega (rad/s)
+% omega_0   = [0.08; -0.1; 0.3]; % Initial omega (rad/s)
+omega_0   = [0; 0; 0]; % Initial omega (rad/s)
 
 
 % Combined Initial Conditions
@@ -37,7 +37,8 @@ t_span = linspace(t_0,t_max,t_div); % Total simulation time.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation options.
-options = odeset('AbsTol',1e-6,'RelTol',1e-6,'OutputFcn',@odeprog,'Events',@odeabort); % This changes the integration tolerence.
+tol = 1e-9;
+options = odeset('AbsTol',tol,'RelTol',tol,'OutputFcn',@odeprog,'Events',@odeabort); % This changes the integration tolerence.
 
 tic
 % [t,x_out] = ode45(@TranslationalODEs,t_span,x,options);
