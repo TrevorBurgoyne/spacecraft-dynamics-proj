@@ -1,0 +1,256 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>hw7</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-04-10"><meta name="DC.source" content="hw7.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Homework 7</a></li><li><a href="#2">(b) Define the given test vectors</a></li><li><a href="#3">(b) find C_ba from s1 and s2</a></li><li><a href="#4">(b) find C_ba from s1 and s3</a></li><li><a href="#5">(c) Noisy Sensor Values</a></li><li><a href="#6">(c) find C_ba from s1 and s2</a></li><li><a href="#7">(c) find C_ba from s1 and s3</a></li><li><a href="#8">(c) Which is noisier, s2 or s3?</a></li><li><a href="#9">So which is noisier?</a></li></ul></div><h2 id="1">Homework 7</h2><p>Trevor Burgoyne, 14 Apr 2023 AEM 4305 Spacecraft Attitude Dynamics and Control</p><pre class="codeinput"><span class="comment">% Add path to util functions so that we can use them</span>
+addpath  <span class="string">'..\simulation\utils\'</span>;
+</pre><h2 id="2">(b) Define the given test vectors</h2><pre class="codeinput"><span class="comment">% frame a</span>
+s1_a = [0;1;2];
+s2_a = [1;3;0];
+s3_a = [1;1;1];
+
+<span class="comment">% frame b</span>
+s1_b = [2.0139;.7545;.6124];
+s2_b = [1.7398;1.2292;-2.3371];
+s3_b = [1.6578;-.0429;-.5000];
+</pre><h2 id="3">(b) find C_ba from s1 and s2</h2><pre class="codeinput">[C_ba] = TRIAD(s1_a, s2_a, s1_b ,s2_b)
+[yaw, pitch, roll] =  DCM2Euler321(C_ba)
+</pre><pre class="codeoutput">
+C_ba =
+
+    0.4330    0.4356    0.7891
+   -0.7500    0.6597    0.0474
+   -0.5000   -0.6124    0.6124
+
+
+yaw =
+
+    0.7884
+
+
+pitch =
+
+   -0.9094
+
+
+roll =
+
+    0.0772
+
+</pre><h2 id="4">(b) find C_ba from s1 and s3</h2><pre class="codeinput">[C_ba] = TRIAD(s1_a, s3_a, s1_b, s3_b)
+[yaw, pitch, roll] =  DCM2Euler321(C_ba)
+</pre><pre class="codeoutput">
+C_ba =
+
+    0.4330    0.4356    0.7891
+   -0.7500    0.6597    0.0474
+   -0.5000   -0.6124    0.6124
+
+
+yaw =
+
+    0.7884
+
+
+pitch =
+
+   -0.9094
+
+
+roll =
+
+    0.0772
+
+</pre><h2 id="5">(c) Noisy Sensor Values</h2><pre class="codeinput"><span class="comment">% noisy frame b values</span>
+s1_b = [2.0712;0.7264;0.6192];
+s2_b = [1.8040;1.1874;-2.3363];
+s3_b = [1.1046;-.2449;-.3776];
+</pre><h2 id="6">(c) find C_ba from s1 and s2</h2><pre class="codeinput">[C_ba2] = TRIAD(s1_a, s2_a, s1_b ,s2_b)
+[yaw, pitch, roll] =  DCM2Euler321(C_ba)
+</pre><pre class="codeoutput">
+C_ba2 =
+
+    0.4156    0.4504    0.7902
+   -0.7629    0.6456    0.0333
+   -0.4952   -0.6167    0.6119
+
+
+yaw =
+
+    0.7884
+
+
+pitch =
+
+   -0.9094
+
+
+roll =
+
+    0.0772
+
+</pre><h2 id="7">(c) find C_ba from s1 and s3</h2><pre class="codeinput">[C_ba3] = TRIAD(s1_a, s3_a, s1_b, s3_b)
+[yaw, pitch, roll] =  DCM2Euler321(C_ba)
+</pre><pre class="codeoutput">
+C_ba3 =
+
+    0.4032    0.5064    0.7622
+   -0.8397    0.5359    0.0882
+   -0.3638   -0.6756    0.6413
+
+
+yaw =
+
+    0.7884
+
+
+pitch =
+
+   -0.9094
+
+
+roll =
+
+    0.0772
+
+</pre><h2 id="8">(c) Which is noisier, s2 or s3?</h2><p>Let's look qualitatively at how different the DCMs are</p><pre class="codeinput">s2_diff = C_ba2 ./ C_ba
+s3_diff = C_ba3 ./ C_ba
+</pre><pre class="codeoutput">
+s2_diff =
+
+    0.9598    1.0339    1.0014
+    1.0172    0.9786    0.7030
+    0.9904    1.0071    0.9992
+
+
+s3_diff =
+
+    0.9312    1.1626    0.9658
+    1.1196    0.8122    1.8613
+    0.7275    1.1032    1.0473
+
+</pre><h2 id="9">So which is noisier?</h2><p>s3 is the noisier measurement</p><pre class="codeinput"><span class="comment">% The differencies of each of the DCM values for s3 are much farther from 1</span>
+<span class="comment">% for every single DCM entry, indicating that it is farther from the exact</span>
+<span class="comment">% measurements and thus must be noiser.</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Homework 7
+% Trevor Burgoyne, 14 Apr 2023
+% AEM 4305 Spacecraft Attitude Dynamics and Control
+
+% Add path to util functions so that we can use them
+addpath  '..\simulation\utils\';
+
+%% (b) Define the given test vectors
+
+% frame a
+s1_a = [0;1;2];
+s2_a = [1;3;0];
+s3_a = [1;1;1];
+
+% frame b
+s1_b = [2.0139;.7545;.6124];
+s2_b = [1.7398;1.2292;-2.3371];
+s3_b = [1.6578;-.0429;-.5000];
+
+%% (b) find C_ba from s1 and s2
+[C_ba] = TRIAD(s1_a, s2_a, s1_b ,s2_b)
+[yaw, pitch, roll] =  DCM2Euler321(C_ba)
+
+%% (b) find C_ba from s1 and s3
+[C_ba] = TRIAD(s1_a, s3_a, s1_b, s3_b)
+[yaw, pitch, roll] =  DCM2Euler321(C_ba)
+
+%% (c) Noisy Sensor Values
+
+% noisy frame b values
+s1_b = [2.0712;0.7264;0.6192];
+s2_b = [1.8040;1.1874;-2.3363];
+s3_b = [1.1046;-.2449;-.3776];
+
+%% (c) find C_ba from s1 and s2
+[C_ba2] = TRIAD(s1_a, s2_a, s1_b ,s2_b)
+[yaw, pitch, roll] =  DCM2Euler321(C_ba)
+
+%% (c) find C_ba from s1 and s3
+[C_ba3] = TRIAD(s1_a, s3_a, s1_b, s3_b)
+[yaw, pitch, roll] =  DCM2Euler321(C_ba)
+
+%% (c) Which is noisier, s2 or s3?
+% Let's look qualitatively at how different the DCMs are
+s2_diff = C_ba2 ./ C_ba
+s3_diff = C_ba3 ./ C_ba
+
+%% So which is noisier?
+% s3 is the noisier measurement
+
+% The differencies of each of the DCM values for s3 are much farther from 1
+% for every single DCM entry, indicating that it is farther from the exact
+% measurements and thus must be noiser.
+##### SOURCE END #####
+--></body></html>
