@@ -92,7 +92,7 @@ for i=1:n_entries
     % TRIAD Cba estimate
     C_TRIAD_hat = TRIAD(s1_a,s2_a,s1_b,s2_b);
     C_TRIAD_eb = C_TRIAD_hat*C_ba'; % Error DCM
-    [y_err,p_err,r_err] = DCM2Euler321(C_IN_eb);
+    [y_err,p_err,r_err] = DCM2Euler321(C_TRIAD_eb);
     yaw_TRIAD_err(i)   = y_err;
     pitch_TRIAD_err(i) = p_err;
     roll_TRIAD_err(i)  = r_err;

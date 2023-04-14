@@ -307,6 +307,7 @@ axis square
 
 % TRIAD errors
 % yaw_TRIAD_err
+figure('Position',[100 100 1200 600])
 subplot(1,3,1)
 plot(t,yaw_TRIAD_err,'Linewidth',line_width);
 hold on
@@ -328,7 +329,7 @@ axis square
 
 % roll_TRIAD_err
 subplot(1,3,3)
-plot(t,roll_TRAID_err,'Linewidth',line_width);
+plot(t,roll_TRIAD_err,'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
 ylabel('TRIAD Roll Error ($\phi^{TRIAD}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
