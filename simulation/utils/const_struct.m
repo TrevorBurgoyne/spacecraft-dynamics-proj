@@ -1,6 +1,6 @@
 %% Constants
 % Trevor Burgoyne
-% Updated: 3 Mar 2023
+% Updated: 29 Apr 2023
 %
 % Usage: 
 % >> addpath  '{path\to\directory\with\this\file\}'
@@ -28,6 +28,10 @@ C.v   = sqrt(C.mu/C.Rs); % m/s, spacecraft orbital velocity
 C.s   = 7.1;             % m, size of spacecraft sides (the central cube)
 C.l   = 9.45;            % m, length of spacecraft rectangular panels
 C.w   = C.s;             % m, width of spacecraft rectangular panels (same as cude size)
+
+% PD Control
+C.kp = 0.5;
+C.kd = 0.2;
 
 % Inertia about Spacecraft COM in Body Frame
 C.I = (C.ms / 6)*diag([
