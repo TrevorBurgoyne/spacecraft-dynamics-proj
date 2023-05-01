@@ -23,15 +23,21 @@ C.mu = C.me*C.G;         % m^3*s^-2, Gravitational Constant for Earth
 % Spacecraft Properties
 C.ms  = 2860;            % kg, spacecraft mass
 C.h   = 3.5786e7;        % m, spacecraft altitude (measured from surface)
+% C.h   = 2e6;             % m, LEO
 C.Rs  = C.Re + C.h;      % m, spacecraft radius (measured from center of earth)
 C.v   = sqrt(C.mu/C.Rs); % m/s, spacecraft orbital velocity
 C.s   = 7.1;             % m, size of spacecraft sides (the central cube)
 C.l   = 9.45;            % m, length of spacecraft rectangular panels
 C.w   = C.s;             % m, width of spacecraft rectangular panels (same as cude size)
 
-% PD Control
-C.kp = 0.5;
-C.kd = 0.2;
+% Option (a) Desired orientation:
+C.q_d       = [1;0;0;0];
+C.epsilon_d = C.q_d(1:3);
+C.eta_d     = C.q_d(4);
+C.T         = [
+    C.eta_d*eye(3) - crossm(C.epsilon_d), -C.epsilon_d
+    C.epsilon_d',                       C.eta_d
+];
 
 % Inertia about Spacecraft COM in Body Frame
 C.I = (C.ms / 6)*diag([
@@ -39,3 +45,8 @@ C.I = (C.ms / 6)*diag([
   .9*C.s^2 + .05*C.l^2           % I2
   .9*C.s^2 + .05*(C.w^2 + C.l^2) % I3
 ]); % kg*m^2
+
+% PD Control
+C.kp = 1e5;
+C.kd = 1e5;
+C.ke = 1e5;

@@ -10,7 +10,7 @@ function [yaw, pitch, roll] =  DCM2Euler321(Cba, tolerance)
 % OUTPUT PARAMETERS:
 % yaw   = yaw angle (psi) in rad. A 1x1 double
 % pitch = pitch angle (theta) in rad. A 1x1 double
-% roll  = roll angle (phi) in rad. A 1x1 double%
+% roll  = roll angle (phi) in rad. A 1x1 double
 % 
 % Trevor Burgoyne
 % Updated Feb 2023
@@ -38,7 +38,10 @@ if (abs(Cba(1,1)) <= tolerance || abs(Cba(3,3)) <= tolerance)
     ));
 else 
     % Use angle relations derived from equation 1.30 of [1]
+    pitch = -asin(Cba(1,3)); 
+%     roll  = atan2(Cba(2,3),Cba(3,3));
+%     yaw   = atan2(Cba(1,2),Cba(1,1));
+    
     roll  = atan(Cba(2,3)/Cba(3,3));
-    pitch = -asin(Cba(1,3));
     yaw   = atan(Cba(1,2)/Cba(1,1));
 end
