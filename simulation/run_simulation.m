@@ -1,7 +1,7 @@
 %% Spacecraft Simulation
 % Created by James Richard Forbes
 % Edited by Ryan James Caverly, Trevor Burgoyne
-% Updated 29 Apr 2023
+% Updated 1 May 2023
 
 clear all
 format long
@@ -25,6 +25,7 @@ v_0    = [0, C.v, 0]';     % Initial velocity [xdot,ydot,zdot]'
 epsilon_0 = (1/sqrt(6))*[1;1;1]; % Initial epsilon
 eta_0     = 1/sqrt(2);           % Initial eta
 omega_0   = [0.08; -0.1; 0.3];   % Initial omega (rad/s)
+gamma_0   = zeros(3,1);          % Initial rxn wheel speeds (rad/s)
 
 % Attitude estimate
 epsilon_hat_0 = zeros(3,1);     % Initial epsilon estimate
@@ -33,15 +34,16 @@ eta_hat_0     = 1;              % Initial eta estimate
 % eta_hat_0     = eta_0;         % Initial eta estimate
 
 % Combined Initial Conditions
-x = [r_0', v_0', epsilon_0', eta_0, omega_0', epsilon_hat_0', eta_hat_0]'; 
+% x = [r_0', v_0', epsilon_0', eta_0, omega_0', epsilon_hat_0', eta_hat_0]'; 
+x = [r_0', v_0', epsilon_0', eta_0, omega_0', gamma_0']';
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation time.
 t_0 = 0; % s
 % t_max = .75*C.day; % s
 % t_max = C.day; % s
-t_max = C.min/3; % s
-t_div = 61; % number of steps to divide the time series into.
+t_max = C.min; % s
+t_div = 101; % number of steps to divide the time series into.
 t_span = linspace(t_0,t_max,t_div); % Total simulation time.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,4 +68,4 @@ plot_script_v2
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Save all the data. (You never know when you'll need it again.)
-save '..\simulation\output\part_6_option_d'
+save '..\simulation\output\part_6_option_c'

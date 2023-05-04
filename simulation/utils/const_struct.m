@@ -46,7 +46,12 @@ C.I = (C.ms / 6)*diag([
   .9*C.s^2 + .05*(C.w^2 + C.l^2) % I3
 ]); % kg*m^2
 
+% Option (c) 
+C.Is = 0.2; % kg*m^2, Inertia of Reaction Wheels
+C.gamma_d = zeros(3,1); % rad/s, desired rxn wheel speeds
+
 % PD Control
-C.kp = 1e5;
+C.kp = 1e4;
 C.kd = 1e5;
 C.ke = 1e5;
+C.kh = 1e3;

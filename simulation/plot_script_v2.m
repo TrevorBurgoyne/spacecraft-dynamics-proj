@@ -1,7 +1,7 @@
 %% Plotting script.
 % Created by James Richard Forbes
 % Edited by Ryan James Caverly, Trevor Burgoyne
-% Updated 29 Apr 2023
+% Updated 1 May 2023
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Font size, line size, and line width. 
@@ -225,114 +225,146 @@ axis square
 % 
 % INS Estimates
 % epsilon1_hat
+% figure('Position',[100 100 1200 600])
+% subplot(2,4,1)
+% plot(t,x_out(:,14),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('$\hat{\varepsilon}_{1}$','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % epsilon2_hat
+% subplot(2,4,2)
+% plot(t,x_out(:,15),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('$\hat{\varepsilon}_{2}$','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % epsilon3_hat
+% subplot(2,4,3)
+% plot(t,x_out(:,16),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('$\hat{\varepsilon}_{3}$','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % eta_hat
+% subplot(2,4,4)
+% plot(t,x_out(:,17),'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('$\hat{\eta}$','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % q_hat_norm
+% subplot(2,4,5)
+% plot(t,q_hat_norm,'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('$\hat{\varepsilon}^{T}\hat{\varepsilon}+\hat{\eta}^{2}-1$','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% % 
+% % yaw_IN_err
+% subplot(2,4,6)
+% plot(t,yaw_IN_err,'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('CF Yaw Error ($\psi^{CF}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % pitch_IN_err
+% subplot(2,4,7)
+% plot(t,pitch_IN_err,'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('CF Pitch Error ($\theta^{CF}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % roll_IN_err
+% subplot(2,4,8)
+% plot(t,roll_IN_err,'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('CF Roll Error ($\phi^{CF}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% % 
+% % TRIAD errors
+% % yaw_TRIAD_err
+% figure('Position',[100 100 1200 600])
+% subplot(1,3,1)
+% plot(t,yaw_TRIAD_err,'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('TRIAD Yaw Error ($\psi^{TRIAD}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % pitch_TRIAD_err
+% subplot(1,3,2)
+% plot(t,pitch_TRIAD_err,'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('TRIAD Pitch Error ($\theta^{TRIAD}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+% 
+% % roll_TRIAD_err
+% subplot(1,3,3)
+% plot(t,roll_TRIAD_err,'Linewidth',line_width);
+% hold on
+% xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
+% ylabel('TRIAD Roll Error ($\phi^{TRIAD}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
+% set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+% grid on
+% axis square
+
+% OPTION (C): Reaction Wheels
+% gamma1_dot
 figure('Position',[100 100 1200 600])
-subplot(2,4,1)
+subplot(1,3,1)
 plot(t,x_out(:,14),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('$\hat{\varepsilon}_{1}$','fontsize',font_size,'Interpreter','latex');
+ylabel('$\dot{\gamma}_{1} (rad/s)$','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 axis square
 
-% epsilon2_hat
-subplot(2,4,2)
+% gamma2_dot
+subplot(1,3,2)
 plot(t,x_out(:,15),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('$\hat{\varepsilon}_{2}$','fontsize',font_size,'Interpreter','latex');
+ylabel('$\dot{\gamma}_{2} (rad/s)$','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 axis square
 
-% epsilon3_hat
-subplot(2,4,3)
+% gamma3_dot
+subplot(1,3,3)
 plot(t,x_out(:,16),'Linewidth',line_width);
 hold on
 xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('$\hat{\varepsilon}_{3}$','fontsize',font_size,'Interpreter','latex');
-set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-grid on
-axis square
-
-% eta_hat
-subplot(2,4,4)
-plot(t,x_out(:,17),'Linewidth',line_width);
-hold on
-xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('$\hat{\eta}$','fontsize',font_size,'Interpreter','latex');
-set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-grid on
-axis square
-
-% q_hat_norm
-subplot(2,4,5)
-plot(t,q_hat_norm,'Linewidth',line_width);
-hold on
-xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('$\hat{\varepsilon}^{T}\hat{\varepsilon}+\hat{\eta}^{2}-1$','fontsize',font_size,'Interpreter','latex');
-set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-grid on
-axis square
-% 
-% yaw_IN_err
-subplot(2,4,6)
-plot(t,yaw_IN_err,'Linewidth',line_width);
-hold on
-xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('CF Yaw Error ($\psi^{CF}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
-set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-grid on
-axis square
-
-% pitch_IN_err
-subplot(2,4,7)
-plot(t,pitch_IN_err,'Linewidth',line_width);
-hold on
-xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('CF Pitch Error ($\theta^{CF}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
-set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-grid on
-axis square
-
-% roll_IN_err
-subplot(2,4,8)
-plot(t,roll_IN_err,'Linewidth',line_width);
-hold on
-xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('CF Roll Error ($\phi^{CF}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
-set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-grid on
-axis square
-% 
-% TRIAD errors
-% yaw_TRIAD_err
-figure('Position',[100 100 1200 600])
-subplot(1,3,1)
-plot(t,yaw_TRIAD_err,'Linewidth',line_width);
-hold on
-xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('TRIAD Yaw Error ($\psi^{TRIAD}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
-set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-grid on
-axis square
-
-% pitch_TRIAD_err
-subplot(1,3,2)
-plot(t,pitch_TRIAD_err,'Linewidth',line_width);
-hold on
-xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('TRIAD Pitch Error ($\theta^{TRIAD}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
-set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
-grid on
-axis square
-
-% roll_TRIAD_err
-subplot(1,3,3)
-plot(t,roll_TRIAD_err,'Linewidth',line_width);
-hold on
-xlabel('Time (s)','fontsize',font_size,'Interpreter','latex');
-ylabel('TRIAD Roll Error ($\phi^{TRIAD}_{err}, rad$)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\dot{\gamma}_{3} (rad/s)$','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 axis square

@@ -12,7 +12,7 @@ function  [dot_x] = ODEs(t,x)
 % the first-order differential equation evaluated at x and t
 %
 % Ryan Caverly, Trevor Burgoyne
-% Updated 29 Apr 2023
+% Updated 1 May 2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 addpath ..\simulation\utils\ % Add util functions to path
@@ -33,13 +33,14 @@ r    = norm(r_b);                % Magnitude of r
 torque_gg = (3*C.mu*r^-5)*crossm(r_b)*C.I*r_b;
 
 torque_c = 0; % initialize
+torque_m = 0; % initialize
 omega    = x(11:13);  % True angular velocity
 
 % Control Torque using PD Control and TRUE values
-% epsilon = x(7:9);    % True epsilon
-% torque_c = -C.kp*epsilon - C.kd*omega;
+epsilon = x(7:9);    % True epsilon
+torque_c = -C.kp*epsilon - C.kd*omega;
 
-% Control Torque using PD Control and ESTIMATE values
+% % Control Torque using PD Control and ESTIMATE values
 % TRIAD attitude determination
 % True values s1_a (Earth Horizon) and s2_a (Magnetometer)
 % s1_a = -r_a;
@@ -56,18 +57,27 @@ omega    = x(11:13);  % True angular velocity
 % 
 % torque_c = -C.kp*epsilon_hat - C.kd*omega_hat;
 
-% OPTION (A): Quaternion PD Attitude Tracking Control
+% % OPTION (A): Quaternion PD Attitude Tracking Control
 % q_err       = C.T*q_ba;   % C.T is constant, a function of C.q_d
 % epsilon_err = q_err(1:3); % True epsilon error
 % torque_c = -C.kp*epsilon_err - C.kd*omega;
 
+% OPTION (C): Magnetic Torquer
+gamma = x(14:16); % Rxn wheel speeds
+b_a = EarthMagField(r_a,t);
+b_b = C_ba*b_a;
+m_b = -C.kh*C.Is*inv(b_b'*b_b)*crossm(b_b)*(gamma - C.gamma_d);
+torque_m = -crossm(b_b)*m_b;
+
 % Combine torques
-torque = torque_gg + torque_c;
+torque = torque_gg + torque_c + torque_m;
 
 % Form dot_x = f(x,u) system.
-dot_x        = zeros(17,1);
+dot_x        = zeros(length(x),1);
 dot_x(1:6)   = TranslationalODEs(t,translational); 
 dot_x(7:13)  = RotationalODEs(t,rotational,torque);
-dot_x(14:17) = EstimateODEs(t,x);
+% dot_x(14:17) = EstimateODEs(t,x);
 % dot_x(14:17) = zeros(4,1);
 
+% OPTION (C): PD Attitude Control with Reaction Wheels
+dot_x(14:16) = -torque_c / C.Is; % Rxn wheel acceleration, rad/s^2
